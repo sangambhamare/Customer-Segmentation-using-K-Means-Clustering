@@ -6,11 +6,12 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 from sklearn.cluster import KMeans
 from sklearn.preprocessing import StandardScaler
+from io import StringIO
 
 # Set Streamlit App Title
 st.title("Customer Segmentation using K-Means Clustering")
 
-# GitHub Raw Dataset URL
+# GitHub Raw Dataset URL (Correct file path)
 DATASET_URL = "https://raw.githubusercontent.com/sangambhamare/Customer-Segmentation-using-K-Means-Clustering/master/Mall_Customers.csv"
 
 # Function to Load Dataset
@@ -19,7 +20,8 @@ def load_data():
     try:
         response = requests.get(DATASET_URL)
         if response.status_code == 200:
-            df = pd.read_csv(pd.compat.StringIO(response.text))
+            csv_data = StringIO(response.text)  # Convert response text to file-like object
+            df = pd.read_csv(csv_data)
             return df
         else:
             st.error("Failed to fetch dataset from GitHub.")
