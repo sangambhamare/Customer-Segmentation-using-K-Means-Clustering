@@ -97,5 +97,5 @@ else:
 
 
 st.markdown("---")  
-st.markdown("# © All Copyrights Reserved to **Mr. Sangam Sanjay Bhamare, 2025**")
+st.markdown("© All Copyrights Reserved to **Mr. Sangam Sanjay Bhamare, 2025**")
 
