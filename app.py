@@ -1,22 +1,29 @@
 import streamlit as st
 import pandas as pd
 import numpy as np
+import requests
 import matplotlib.pyplot as plt
 import seaborn as sns
 from sklearn.cluster import KMeans
 from sklearn.preprocessing import StandardScaler
-import kagglehub
 
 # Set Streamlit App Title
 st.title("Customer Segmentation using K-Means Clustering")
 
-# Download and Load Dataset
+# GitHub Raw Dataset URL
+DATASET_URL = "https://raw.githubusercontent.com/sangambhamare/Customer-Segmentation-using-K-Means-Clustering/master/Mall_Customers.csv"
+
+# Function to Load Dataset
 @st.cache_data
 def load_data():
     try:
-        path = kagglehub.dataset_download("vjchoudhary7/customer-segmentation-tutorial-in-python")
-        df = pd.read_csv(f"{path}/Mall_Customers.csv")
-        return df
+        response = requests.get(DATASET_URL)
+        if response.status_code == 200:
+            df = pd.read_csv(pd.compat.StringIO(response.text))
+            return df
+        else:
+            st.error("Failed to fetch dataset from GitHub.")
+            return None
     except Exception as e:
         st.error(f"Error loading dataset: {e}")
         return None
@@ -84,4 +91,4 @@ if df is not None:
 
     st.success("Customer segmentation completed successfully!")
 else:
-    st.warning("Unable to load the dataset. Please check KaggleHub access.")
+    st.warning("Unable to load the dataset. Please check the GitHub file link.")
