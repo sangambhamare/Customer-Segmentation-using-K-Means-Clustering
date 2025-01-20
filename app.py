@@ -8,6 +8,13 @@ from sklearn.preprocessing import StandardScaler
 from sklearn.metrics import silhouette_score
 import kagglehub
 
+import kagglehub
+
+# Download latest version of dataset
+path = kagglehub.dataset_download("vjchoudhary7/customer-segmentation-tutorial-in-python")
+print("Path to dataset files:", path)
+
+
 # Set Streamlit app title
 st.title("Customer Segmentation using K-Means Clustering")
 
