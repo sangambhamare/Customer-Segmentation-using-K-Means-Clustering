@@ -94,3 +94,8 @@ if df is not None:
     st.success("Customer segmentation completed successfully!")
 else:
     st.warning("Unable to load the dataset. Please check the GitHub file link.")
+
+
+st.markdown("---")  
+st.markdown("# © All Copyrights Reserved to **Mr. Sangam Sanjay Bhamare, 2025**")
+
